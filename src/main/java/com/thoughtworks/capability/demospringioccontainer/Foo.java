@@ -1,19 +1,16 @@
 package com.thoughtworks.capability.demospringioccontainer;
 
-import org.springframework.context.ApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Foo {
 
-    private final ApplicationContext applicationContext;
-
-    public Foo(ApplicationContext applicationContext) {
-        this.applicationContext = applicationContext;
-    }
+    @Autowired
+    private Bar bar;
 
     public void hi() {
-        System.out.println("Hi, " + applicationContext.getBean(Bar.class).name());
+        System.out.println("Hi, " + bar.name());
     }
 
     public String name() {
