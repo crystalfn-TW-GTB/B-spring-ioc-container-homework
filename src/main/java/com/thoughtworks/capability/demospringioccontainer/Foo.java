@@ -1,20 +1,19 @@
 package com.thoughtworks.capability.demospringioccontainer;
 
-import org.springframework.context.annotation.Lazy;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Foo {
 
-    private Bar bar;
+    private final ApplicationContext applicationContext;
 
-    @Lazy
-    public Foo(Bar bar) {
-        this.bar = bar;
+    public Foo(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
     }
 
     public void hi() {
-        System.out.println("Hi, " + bar.name());
+        System.out.println("Hi, " + applicationContext.getBean(Bar.class).name());
     }
 
     public String name() {
